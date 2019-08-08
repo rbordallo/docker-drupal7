@@ -20,8 +20,8 @@ RUN apt-get install -y libpng-dev libjpeg-dev libpq-dev zlib1g-dev \
 RUN curl -sS https://getcomposer.org/installer | php
 RUN mv composer.phar /usr/local/bin/composer
 
-# Install Drush 9.
-RUN composer global require drush/drush:9.*
+# Install Drush 8.
+RUN composer global require drush/drush:8.*
 RUN composer global update
 RUN ln -s /root/.composer/vendor/bin/drush /usr/local/bin/drush
 
@@ -43,5 +43,7 @@ RUN echo "memory_limit=512M" >> /usr/local/etc/php/conf.d/memory-limit.ini \
 RUN composer clear-cache
 RUN apt-get clean
 
+# TODO Execute Composer Install
+
 # PHP library external
-RUN docker-php-ext-install bcmath
+# RUN docker-php-ext-install bcmath
