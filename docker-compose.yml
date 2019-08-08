@@ -1,0 +1,30 @@
+# Drupal with MySQL
+#
+# Access via "http://localhost:8080"
+#   (or "http://$(docker-machine ip):8080" if using docker-machine)
+
+version: '2'
+
+services:
+
+  opigno:
+    build: .
+    ports:
+      - 8080:80
+    volumes:
+      - .:/var/www/html
+    extends:
+      file: docker-env-vars.yml
+      service: envvars
+    restart: always
+
+  mysql:
+    image: mysql:5.7
+    ports:
+      - 3306:3306
+    volumes:
+      - ./db:/var/lib/mysql
+    extends:
+      file: docker-env-vars.yml
+      service: envvars
+    restart: always
